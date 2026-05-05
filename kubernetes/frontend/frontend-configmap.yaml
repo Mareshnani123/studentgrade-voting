@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: student-grade-ui-configmap
+  namespace: grade-submission
+data:
+  BACKEND_SERVICE: 'studentgrade-api-service'
