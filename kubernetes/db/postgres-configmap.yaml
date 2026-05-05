@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-init-script
+  namespace: grade-submission
+data:
+  init.sql: |
+    CREATE TABLE marks (
+      id SERIAL PRIMARY KEY,
+      name TEXT,
+      marks INT
+    );
