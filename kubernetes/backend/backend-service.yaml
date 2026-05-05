@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentgrade-api-service
+  namespace: grade-submission
+spec:
+  selector:
+    app.kubernetes.io/instance: student-grade-api
+  ports:
+  - port: 5000
+    targetPort: 5000
