@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-grade-api
+  namespace: grade-submission
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: student-grade-api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: student-grade-api
+        app.kubernetes.io/component: backened
+        app.kubernetes.io/instance: student-grade-api
+    spec:
+      containers:
+      - name: student-grade-ui
+        image: studentgrade.azurecr.io/backend/backend:v1
+        envFrom:
+          - configMapRef:
+             name: student-grade-api-configmap
+          - secretRef:
+              name: student-grade-api-secret
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "250Mi"
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+        - name: acr-secret
+      
