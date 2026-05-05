@@ -1,1 +1,0 @@
-db k8s resources are added
