@@ -1,1 +1,0 @@
-backend k8s resources are added to the file
