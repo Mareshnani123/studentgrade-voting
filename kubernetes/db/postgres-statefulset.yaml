@@ -16,11 +16,11 @@ spec:
         app.kubernetes.io/component: db
         app.kubernetes.io/instance: postgres-db
     spec:
-      nodeselector:
+      nodeSelector:
         workload: db
       tolerations:
         - key: "db"
-          opertaor: "Equal"
+          operator: "Equal"
           value: "true"
           effect: "NoSchedule"
       containers:
