@@ -5,4 +5,4 @@ metadata:
   namespace: grade-submission
 data:
   DB_HOST: 'postgres-service'
-  DB_NAME: 'postgres'
+  DB_NAME: 'students'
