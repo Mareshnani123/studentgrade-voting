@@ -18,16 +18,23 @@
             const name = document.getElementById("name").value;
             const marks = document.getElementById("marks").value;
 
-            const response = await fetch("http://BACKEND_SERVICE:5000/marks", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ name, marks })
-            });
+            try {
+                const response = await fetch("/marks", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ name, marks })
+                });
 
-            const data = await response.json();
-            document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+                const data = await response.json();
+                document.getElementById("result").innerText =
+                    JSON.stringify(data, null, 2);
+
+            } catch (error) {
+                document.getElementById("result").innerText =
+                    "Error: " + error;
+            }
         }
     </script>
 </body>
