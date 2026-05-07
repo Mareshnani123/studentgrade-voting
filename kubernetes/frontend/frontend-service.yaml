@@ -4,7 +4,6 @@ metadata:
   name: frontend-service
   namespace: grade-submission
 spec:
-  type: LoadBalancer
   selector:
     app.kubernetes.io/instance: student-grade-ui
   ports:
