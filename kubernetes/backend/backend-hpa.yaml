@@ -6,7 +6,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    app.kubernetes.io/instance: student-grade-api
+    name: student-grade-api
   minReplicas: 1
   maxReplicas: 3
   metrics:
