@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentgrade-api-service
+  namespace: {{ .values.namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: student-grade-api
+  ports:
+  - port: {{ .values.image.port }}
+    targetPort: {{ .values.image.port }}
