@@ -1,0 +1,8 @@
+namespace: grade-submission
+replicas: 2
+backend:
+   name: studentgrade.azurecr.io/backend/backend:v1
+   port: 5000
+secret:
+  DB_USER: 'cG9zdGdyZXM='
+  DB_PASS: 'UG9zdGdyZXMxMjM='
