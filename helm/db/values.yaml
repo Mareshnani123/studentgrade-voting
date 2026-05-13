@@ -1,0 +1,9 @@
+namespace: grade-submission
+replicas: 2
+image:
+  name: studentgrade.azurecr.io/db/postgres:15
+  port: 5432
+database:
+  PASSWORD: 'UG9zdGdyZXMxMjM='
+  USER: 'cG9zdGdyZXM='
+  DB_NAME: 'c3R1ZGVudHM='
