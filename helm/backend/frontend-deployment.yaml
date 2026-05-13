@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-grade-ui
+  namespace: {{ .values.namespace }}
+spec:
+  replicas: {{ .values.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: student-grade-ui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: student-grade-ui
+        app.kubernetes.io/component: frontend
+        app.kubernetes.io/instance: student-grade-ui
+    spec:
+      containers:
+      - name: student-grade-ui
+        image: {{ .values.image.name }}
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "250Mi"
+        ports:
+        - containerPort: {{ .values.image.port }}
+      imagePullSecrets:
+        - name: acr-secret
