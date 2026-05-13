@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-db
+  namespace: {{ .values.namespace}}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: postgres-db
+  serviceName: postgresdb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres-db
+        app.kubernetes.io/component: db
+        app.kubernetes.io/instance: postgres-db
+    spec:
+      nodeSelector:
+        workload: db
+      tolerations:
+        - key: "db"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      containers:
+      - name: postgres-db
+        image: {{ .values.image.name }}
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        envFrom:
+         - secretRef:
+             name: postgres-seceret
+        resources:
+          requests:
+            memory: '128Mi'
+          limits:
+            memory: '256Mi'
+        ports:
+        - containerPort: {{ values.image.port }}
+          name: db
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        - name: init-script
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: init-script
+          configMap:
+            name: db-init-script
+      imagePullSecrets:
+        - name: acr-secret
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
