@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: student-grade-api
-  namespace: {{ .values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: {{ .values.replicas}}
+  replicas: {{ .Values.replicas}}
   selector:
     matchLabels:
       app.kubernetes.io/instance: student-grade-api
@@ -32,7 +32,7 @@ spec:
           effect: "NoSchedule"
       containers:
       - name: student-grade-api
-        image: {{ .values.image.name}}
+        image: {{ .Values.backend.name}}
         envFrom:
           - configMapRef:
              name: student-grade-api-configmap
@@ -44,7 +44,6 @@ spec:
           limits:
             memory: "250Mi"
         ports:
-        - containerPort: {{ .values.image.port }}
+        - containerPort: {{ .Values.backend.port }}
       imagePullSecrets:
         - name: acr-secret
-      
