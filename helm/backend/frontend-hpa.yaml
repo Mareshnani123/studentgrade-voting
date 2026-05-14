@@ -1,19 +1,29 @@
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: frontend-hpa
+  name: student-grade-ui
   namespace: {{ .Values.namespace }}
 spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: student-grade-ui
-  minReplicas: {{ .Values.hpa.min }}
-  maxReplicas: {{ .Values.hpa.max }}
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: student-grade-ui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: student-grade-ui
+        app.kubernetes.io/component: frontend
+        app.kubernetes.io/instance: student-grade-ui
+    spec:
+      containers:
+      - name: student-grade-ui
+        image: {{ .Values.frontend.name }}
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "250Mi"
+        ports:
+        - containerPort: {{ .Values.frontend.port }}
+      imagePullSecrets:
+        - name: acr-secret
