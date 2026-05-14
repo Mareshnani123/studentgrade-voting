@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres-db
-  namespace: {{ .values.namespace}}
+  namespace: {{ .Values.namespace}}
 spec:
   selector:
     matchLabels:
@@ -25,7 +25,7 @@ spec:
           effect: "NoSchedule"
       containers:
       - name: postgres-db
-        image: {{ .values.image.name }}
+        image: {{ .Values.db.name }}
         env:
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
@@ -38,7 +38,7 @@ spec:
           limits:
             memory: '256Mi'
         ports:
-        - containerPort: {{ values.image.port }}
+        - containerPort: {{ values.db.port }}
           name: db
         volumeMounts:
         - name: postgres-storage
