@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: student-grade-api-configmap
-  namespace: {{ .values.namespace}}
+  namespace: {{ .Values.namespace}}
 data:
   DB_HOST: 'postgres-service'
   DB_NAME: 'students'
