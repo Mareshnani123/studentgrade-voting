@@ -1,19 +1,9 @@
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
+apiVersion: v1
+kind: Secret
 metadata:
-  name: backend-hpa
-  namespace: {{ .Values.namespace}}
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: student-grade-api
-  minReplicas: {{ .Values.hpa.min }} 
-  maxReplicas: {{ .Values.hpa.max }}
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
+  name: student-grade-api-secret
+  namespace: grade-submission
+type: Opaque
+data:
+  DB_USER: {{ .Values.secret.DB_USER }}
+  DB_PASS: {{ .Values.secret.DB_PASS }}
