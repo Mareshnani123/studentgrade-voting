@@ -2,4 +2,4 @@ apiVersion: v2
 appVersion: 1.0.0
 version: 0.1
 name: studentgrade-frontend
-description: student grade can be storted and given outuput
+description: student grade frontend used to take input from user and post it to backend
