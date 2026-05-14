@@ -1,6 +1,6 @@
 namespace: grade-submission
 replicas: 2
-image:
+db:
   name: studentgrade.azurecr.io/db/postgres:15
   port: 5432
 database:
