@@ -4,7 +4,7 @@ metadata:
   name: frontend-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app.kubernetes.io/instance: student-grade-ui
   ports:
