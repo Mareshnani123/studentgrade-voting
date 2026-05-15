@@ -1,8 +1,7 @@
 namespace: grade-submission
 replicas: 2
 frontend:
-  name: studentgrade.azurecr.io/frontend/frontend
-  version: v1
+  name: studentgrade.azurecr.io/frontend/frontend:v1
   port: 80
 hpa:
   min: 1
