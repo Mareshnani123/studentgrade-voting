@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-backend-to-db
+  namespace: grade-submission
+
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: postgres-db
+
+  policyTypes:
+  - Ingress
+
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app.kubernetes.io/name: student-grade-api
+
+    ports:
+    - protocol: TCP
+      port: 5432
