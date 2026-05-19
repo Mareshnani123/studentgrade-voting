@@ -4,5 +4,5 @@ metadata:
   name: student-grade-api-configmap
   namespace: {{ .Values.namespace}}
 data:
-  DB_HOST: 'postgres-service'
+  DB_HOST: {{ .Values.Data.hostname }}
   DB_NAME: 'students'
