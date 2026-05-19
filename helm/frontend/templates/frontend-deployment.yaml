@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: student-grade-ui
-  namespace: grade-submission
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app.kubernetes.io/instance: student-grade-ui
@@ -27,13 +27,13 @@ spec:
            topologyKey: "kubernetes.io/hostname" # Spreads pods across nodes
       containers:
       - name: student-grade-ui
-        image: studentgrade.azurecr.io/frontend/frontend:v2
+        image: {{ .Values.frontend.name }}
         resources:
           requests:
             memory: "128Mi"
           limits:
             memory: "250Mi"
         ports:
-        - containerPort: 80
+        - containerPort: {{ .Values.frontend.port }}
       imagePullSecrets:
         - name: acr-secret
