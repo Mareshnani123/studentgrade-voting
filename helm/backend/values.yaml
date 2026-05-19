@@ -6,6 +6,8 @@ backend:
 hpa:
   min: 1
   max: 3
+data:
+   hostname: "vijay.postgres.database.azure.com"
 secret:
   DB_USER: 'dmlqYXk='
   DB_PASS: "U2FyYW55YUAzMzIyMTE="
