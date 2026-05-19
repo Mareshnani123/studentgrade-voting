@@ -4,5 +4,5 @@ metadata:
   name: student-grade-api-configmap
   namespace: {{ .Values.namespace}}
 data:
-  DB_HOST: {{ .Values.Data.hostname }}
+  DB_HOST: {{ .Values.data.hostname }}
   DB_NAME: 'students'
