@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: student-backend-monitor
+  namespace: monitoring
+  labels:
+    release: monitoring
+    app.kubernetes.io/instance: student-grade-api
+
+spec:
+  namespaceSelector:
+    matchNames:
+    - grade-submission
+
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: student-grade-api
+
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 15s
