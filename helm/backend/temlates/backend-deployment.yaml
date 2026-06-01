@@ -20,6 +20,7 @@ spec:
         app.kubernetes.io/component: backened
         app.kubernetes.io/instance: student-grade-api
     spec:
+      serviceAccountName: student-api-sa
       affinity:
         podAntiAffinity:
           # 2. Ensure this is changed to preferred (soft rule)
