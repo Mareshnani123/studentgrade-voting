@@ -45,6 +45,17 @@ spec:
         envFrom:
           - configMapRef:
              name: student-grade-api-configmap
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-env-bridge  # Must match the secretName in your SecretProviderClass
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: db-env-bridge  # Must match the secretName in your SecretProviderClass
+              key: DB_PASS
         resources:
           requests:
             memory: "128Mi"
@@ -65,3 +76,4 @@ spec:
               secretProviderClass: student-kv
       imagePullSecrets:
         - name: acr-secret
+      
