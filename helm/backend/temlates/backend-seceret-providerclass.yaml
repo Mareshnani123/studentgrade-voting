@@ -13,7 +13,19 @@ spec:
     objects: |
       array:
         - |
+          objectName: db-user
+          objectType: secret
+        - |
           objectName: db-password
           objectType: secret
-
     tenantId: "84f1e4ea-8554-43e1-8709-f0b8589ea118"
+  
+  # This block bridges the gap between the files and environment variables
+  secretObjects:
+    - secretName: my-db-env-bridge
+      type: Opaque
+      data:
+        - objectName: db-user
+          key: DB_USER       # Maps the file content to this env key
+        - objectName: db-password
+          key: DB_PASS       # Maps the file content to this env key
