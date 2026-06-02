@@ -22,7 +22,7 @@ spec:
   
   # This block bridges the gap between the files and environment variables
   secretObjects:
-    - secretName: my-db-env-bridge
+    - secretName: db-env-bridge
       type: Opaque
       data:
         - objectName: db-user
