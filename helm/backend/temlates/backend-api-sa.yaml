@@ -3,3 +3,5 @@ kind: ServiceAccount
 metadata:
   name: student-api-sa
   namespace: grade-submission
+  annotations:
+    azure.workload.identity/client-id: {{ .Values.identity.id }}
