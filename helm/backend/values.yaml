@@ -8,6 +8,8 @@ hpa:
   max: 3
 data:
    hostname: "studentgrade.postgres.database.azure.com"
+identity:
+   id: '6b2208e7-0229-48de-aa02-66d5c1b59e4b'
 secret:
   DB_USER: 'dmlqYXk='
   DB_PASS: "U2FyYW55YUAzMzIyMTE="
