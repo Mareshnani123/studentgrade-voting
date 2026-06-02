@@ -45,8 +45,6 @@ spec:
         envFrom:
           - configMapRef:
              name: student-grade-api-configmap
-          - secretRef:
-              name: student-grade-api-secret
         resources:
           requests:
             memory: "128Mi"
